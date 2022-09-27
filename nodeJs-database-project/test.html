@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>api testing</title>
+    </head>
+    <body>
+        <h2>hello world</h2>
+        <button onclick="fetchFun()">fetch</button>
+        <button onclick="postFun()">post</button>
+    </body>
+    <script>
+        function postFun() {
+            let bodyy = {
+                name: "user",
+                age: 19,
+                height: "6ft",
+            };
+            fetch("http://localhost:8080/api", {
+                method: "POST",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify(bodyy),
+            })
+                .then((Response) => {
+                    return Response.text();
+                })
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+        function fetchFun() {
+            fetch("http://localhost:8080/api")
+                .then((Response) => {
+                    return Response.json();
+                })
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    </script>
+</html>
